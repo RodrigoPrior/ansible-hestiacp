@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  # Docker access needs root permissions
+  become: true
+  tasks:
+    - name: "Include ifgy-ansible-hestiacp"
+      ansible.builtin.include_role:
+        name: "ifgy-ansible-hestiacp"

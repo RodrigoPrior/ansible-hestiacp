@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: rodriogo prior
+  role_name: ansible_hestiacp
+  namespace: ifgy
+  description: Installs opensource hestiacp control panel
+  company: Infranology  
+  license: MIT
+  min_ansible_version: "2"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  galaxy_tags:
+    - hestiacp
+    - ubuntu
+dependencies: []

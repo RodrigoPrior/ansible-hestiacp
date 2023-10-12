@@ -1,0 +1,53 @@
+---
+# defaults file for sa-box-hestiacp
+role_dir: "{{ role_path }}"
+
+# Set hostname
+hestia_hostname: "hostname.domain.tld"
+# Set admin email
+hestia_email: "override@hostname.domain.tld"
+# Set admin password
+hestia_password: "overrideme"
+# Set default admin port
+hestia_port: 8083
+# Default language default: en
+hestia_lang: en
+
+# Install Apache [yes | no] default: yes
+option_apache: yes
+# Install PHP-FPM [yes | no] default: yes
+option_phpfpm: no
+# Install Multi-PHP [yes | no] default: no
+option_multiphp: yes
+# Install Vsftpd [yes | no] default: yes
+option_vsftpd: yes
+# Install ProFTPD [yes | no] default: no
+option_proftpd: no
+# Install Bind [yes | no] default: yes
+option_named: yes
+# Install MariaDB [yes | no] default: yes
+option_mysql: no
+# Install Mysql8 [yes | no] default: no
+option_mysql8: yes
+# Install PostgreSQL [yes | no] default: no
+option_postgresql: no
+# Install Exim [yes | no] default: yes
+option_exim: yes
+# Install Dovecot [yes | no] default: yes
+option_dovecot: yes
+# Install Sieve [yes | no] default: no
+option_sieve: no
+# Install ClamAV [yes | no] default: yes
+option_clamav: yes
+# Install SpamAssassin [yes | no] default: yes
+option_spamassassin: yes
+# Install Iptables [yes | no] default: yes
+option_iptables: yes
+# Install Fail2ban [yes | no] default: yes
+option_fail2ban: yes
+# Filesystem Quota [yes | no] default: no
+option_quota: no
+# Activate API [yes | no] default: yes
+option_api: yes
+# Interactive install [yes | no] default: yes
+option_interactive: no

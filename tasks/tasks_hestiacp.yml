@@ -1,0 +1,50 @@
+---
+# tasks file for sa-box-hestiacp
+
+- name: Hestia CP | Check installed
+  service_facts:
+  tags:
+    - hestiacp
+    - skip_ansible_lint
+
+- name: Hestia CP | get installer
+  # get_url: url=http://hestiacp.com/pub/vst-install.sh dest=/tmp/vst-install.sh mode="u=rwx,g=rx,o=rx"
+  get_url: url=https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install.sh dest=/tmp/hst-install.sh mode="u=rwx,g=rx,o=rx"
+  when: "'hestia' not in services"
+  become: yes
+  tags:
+    - hestiacp
+
+- name: Hestia CP | install
+  shell: >
+    /tmp/hst-install.sh
+    --apache {{ 'yes' if option_apache else 'no' }}
+    --phpfpm {{ 'yes' if option_phpfpm else 'no' }}
+    --multiphp {{ 'yes' if option_multiphp else 'no' }}
+    --vsftpd {{ 'yes' if option_vsftpd else 'no' }}
+    --proftpd {{ 'yes' if option_proftpd else 'no' }}
+    --named {{ 'yes' if option_named else 'no' }}
+    --mysql {{ 'yes' if option_mysql else 'no' }}
+    --mysql8 {{ 'yes' if option_mysql8 else 'no' }}
+    --postgresql {{ 'yes' if option_postgresql else 'no' }}
+    --exim {{ 'yes' if option_exim else 'no' }}
+    --dovecot {{ 'yes' if option_dovecot else 'no' }}
+    --sieve {{ 'yes' if option_sieve else 'no' }}
+    --clamav {{ 'yes' if option_clamav else 'no' }}
+    --spamassassin {{ 'yes' if option_spamassassin else 'no' }}
+    --iptables {{ 'yes' if option_iptables else 'no' }}
+    --fail2ban {{ 'yes' if option_fail2ban else 'no' }}
+    --quota {{ 'yes' if option_quota else 'no' }}
+    --api {{ 'yes' if option_api else 'no' }}
+    --interactive {{ 'yes' if option_interactive else 'no' }}
+    --hostname {{ hestia_hostname }}
+    --email {{ hestia_email }}
+    --password {{ hestia_password }}
+    --port {{ hestia_port }}
+    --lang {{ hestia_lang }}
+    --force
+  when: "'hestia' not in services"
+  become: yes
+  tags:
+    - hestiacp
+    - skip_ansible_lint

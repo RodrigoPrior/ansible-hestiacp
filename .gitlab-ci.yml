@@ -1,0 +1,9 @@
+---
+stages:
+  - test
+test:
+  stage: test
+  tags:
+    - molecule
+  script:
+    - molecule test -- --extra-vars "docker_registry_username=${CI_REGISTRY_USER}" --extra-vars "docker_registry_password=${CI_REGISTRY_PASSWORD}"

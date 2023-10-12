@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+  requirements-file: requirements.yml
+driver:
+  name: vagrant
+platforms:
+  - name: instance
+    box: ubuntu/jammy64
+    memory: 4096
+    cpus: 4
+    groups:
+      - hestiacp
+    interfaces:
+      - network_name: forwarded_port
+        guest: 8083
+        host: 8083
+      - network_name: forwarded_port
+        guest: 80
+        host: 8080
+      - network_name: forwarded_port
+        guest: 443
+        host: 8443
+provisioner:
+  name: ansible
+  options:
+    # Enable `--diff` mode
+    D: true
+verifier:
+  name: ansible
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
